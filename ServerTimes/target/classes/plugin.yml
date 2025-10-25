@@ -1,0 +1,53 @@
+name: ServerTimes
+version: '1.0.0'
+main: com.servertimes.ServerTimesPlugin
+api-version: '1.21'
+description: A plugin to manage server opening and closing times
+author: ServerTimes Team
+website: https://github.com/servertimes/servertimes
+load: STARTUP
+depend: []
+softdepend: [LuckPerms, PermissionsEx, GroupManager]
+
+commands:
+  servertimes:
+    description: Manage server opening and closing times
+    usage: |
+      /servertimes set <day> <start-time> <end-time> - Set server times for a day
+      /servertimes add <day> <start-time> <end-time> - Add additional session for a day
+      /servertimes remove <day> [session-number] - Remove session(s) for a day
+      /servertimes list [day] - List current schedule
+      /servertimes reload - Reload configuration
+      /servertimes status - Check current server status
+      /servertimes help - Show command help
+    aliases: [st, schedule]
+    permission: servertimes.admin
+    permission-message: "§cYou don't have permission to use this command!"
+  timezone:
+    description: Set your personal timezone for server times
+    usage: |
+      /timezone - Show your current timezone
+      /timezone <timezone> - Set your timezone (EST, CST, PST, etc.)
+      /timezone reset - Reset to server default
+      /timezone help - Show timezone help
+    aliases: [tz]
+    permission: servertimes.timezone
+    permission-message: "§cYou don't have permission to use this command!"
+
+permissions:
+  servertimes.*:
+    description: Grants access to all ServerTimes features
+    children:
+      servertimes.admin: true
+      servertimes.bypass: true
+      servertimes.timezone: true
+    default: false
+  servertimes.admin:
+    description: Allows management of server schedules and configuration
+    default: op
+  servertimes.bypass:
+    description: Allows joining and staying online when server is closed
+    default: false
+  servertimes.timezone:
+    description: Allows setting personal timezone preferences
+    default: true

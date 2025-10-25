@@ -1,0 +1,59 @@
+# ServerTimes Configuration
+# Configure when your server should be open for each day of the week
+# Time format: HH:mm (24-hour format) or H:mmam/pm (12-hour format)
+# Multiple sessions per day are supported
+# 
+# SECURITY NOTES:
+# - Maximum 10 sessions per day to prevent memory issues
+# - Time strings are limited to 50 characters
+# - Messages are limited to 500 characters
+# - Configuration is validated on load
+
+# Version for configuration compatibility checking
+config_version: 1
+
+schedule:
+  monday:
+    - "21:00-22:00"  # 9 PM to 10 PM
+  tuesday: []
+  wednesday: []
+  thursday: []
+  friday: []
+  saturday: []
+  sunday:
+    - "21:00-23:59"  # 9 PM to 11:59 PM (almost midnight)
+    - "19:00-20:00"  # 7 PM to 8 PM
+
+# Customizable messages (max 500 characters each)
+messages:
+  server_closed: "§cThe server is currently closed. Please check the schedule and come back during open hours!"
+  join_denied: "§cThe server is currently closed. Please check the schedule and come back during open hours!"
+  server_opening: "§aThe server is now open! Welcome!"
+  server_closing_warning: "§eThe server will close in {minutes} minute(s)!"
+  kick_message: "§cServer is closed! Please check the schedule and come back during open hours."
+
+# Plugin settings
+settings:
+  # How many minutes before closing to warn players (1-60)
+  warning_minutes: 5
+  # Whether to gracefully shut down (warn players before kicking)
+  graceful_shutdown: true
+  # Check interval in seconds (minimum 10, maximum 300)
+  check_interval: 30
+  # Maximum sessions per day (security limit)
+  max_sessions_per_day: 10
+  # Enable debug logging
+  debug_mode: false
+  # Timezone for server operations (leave empty for system default)
+  server_timezone: ""
+
+# Security settings
+security:
+  # Maximum length for time strings (characters)
+  max_time_string_length: 50
+  # Maximum length for messages (characters)
+  max_message_length: 500
+  # Maximum length for timezone strings (characters)
+  max_timezone_length: 100
+  # Enable configuration validation on load
+  validate_config: true
